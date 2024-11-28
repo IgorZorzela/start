@@ -2,8 +2,8 @@ package com.curso.api.start.Model;
 
 import java.io.Serializable;
 
-
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -13,7 +13,7 @@ public class Person implements Serializable{
     
     private static final long serialVersionUID = 1L;
 
-    @Id
+    //@Id
     private long Id;
     private String name;
     private String lastName;
