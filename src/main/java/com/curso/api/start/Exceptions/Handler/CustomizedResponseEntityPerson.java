@@ -14,7 +14,7 @@ import com.curso.api.start.Exceptions.UnsupportedMath;
 
 @RestController
 @ControllerAdvice
-public class CustomizedResponseEntity extends ResponseEntityExceptionHandler{
+public class CustomizedResponseEntityPerson extends ResponseEntityExceptionHandler{
 	
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionResponse> handleAllExceptions(
@@ -29,7 +29,7 @@ public class CustomizedResponseEntity extends ResponseEntityExceptionHandler{
 	}
 	
 	@ExceptionHandler(UnsupportedMath.class)
-	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(
+	public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(
 			Exception ex, WebRequest request) {
 		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
@@ -37,7 +37,7 @@ public class CustomizedResponseEntity extends ResponseEntityExceptionHandler{
 				ex.getMessage(),
 				request.getDescription(false));
 		
-		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
 
 }
