@@ -1,11 +1,11 @@
-package com.curso.api.start.DTO;
+package com.curso.api.start.VO;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class PersonDTO implements Serializable{
+public class PersonVO implements Serializable{
     
     private long Id;    
     private String name;    
