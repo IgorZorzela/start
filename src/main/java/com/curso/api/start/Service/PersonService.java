@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.curso.api.start.DTO.PersonDTO;
 import com.curso.api.start.Exceptions.UnsupportedMath;
 import com.curso.api.start.Model.Person;
 import com.curso.api.start.Repository.PersonRepository;
@@ -19,12 +20,12 @@ public class PersonService implements Serializable {
     @Autowired
     PersonRepository repository;
 
-    public List<Person> findAll(){
+    public List<PersonDTO> findAll(){
         logger.info("Find all people");                           
         return repository.findAll();
     }
             
-    public Person findById(Long id){
+    public PersonDTO findById(Long id){
         logger.info("Find person");
         Person person = new Person();		
 		person.setName("Leandro");
@@ -35,11 +36,11 @@ public class PersonService implements Serializable {
                             .orElseThrow(() -> new UnsupportedMath("Person not found by ID"));
     }
 
-    public Person creat (Person person){
+    public PersonDTO creat (PersonDTO person){
         logger.info("created a person");
         return repository.save(person);
     } 
-    public Person update (Person person){
+    public PersonDTO update (PersonDTO person){
         logger.info("update a person");
 
         var  entity = repository.findById(person.getId())
