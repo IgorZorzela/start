@@ -1,0 +1,15 @@
+
+INSERT INTO `person` VALUES (1,'rolandia','masculino','asdad','iguuu'),
+(2,'rolandia','masculino','asdad','gabriel'),
+(3,'rolandia','masculino','zorzela','igor'),
+(4,'rolandia','feminino','asdasdasdad','vanessa'),
+(5,'rolandia','feminino','asdasdasdad','amanda'),
+(6,'rolandia','feminino','asdasdasdad','maria'),
+(7,'rolandia','masculino','asdasdasdad','vituuu'),
+(8,'rolandia','masculino','asdasdasdad','caiuuuu'),
+(10,'rolandia','feminino','asdad','solaine'),
+(11,'rolandia','masculino','asdad','matheus'),
+(14,'rolandia','masculino','zorzela','gabriel'),
+(15,'rolandia','masculino','zorzela','gabriel'),
+(16,'rolandia','masculino','zorzela','gabriel'),
+(17,'rolandia','masculino','zorzela','gabriel');
