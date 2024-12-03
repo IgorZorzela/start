@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.curso.api.start.Exceptions.UnsupportedMath;
+import com.curso.api.start.Mapper.CustomMapper;
 import com.curso.api.start.Mapper.DozerMapper;
 import com.curso.api.start.Model.Person;
 import com.curso.api.start.Repository.PersonRepository;
 import com.curso.api.start.VO.PersonVO;
+import com.curso.api.start.VO.v2.PersonVOV2;
 
 @Service
 public class PersonService implements Serializable {
@@ -20,6 +22,9 @@ public class PersonService implements Serializable {
 
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    CustomMapper mapper;
 
     public List<PersonVO> findAll(){
         logger.info("Find all people");                           
@@ -38,11 +43,18 @@ public class PersonService implements Serializable {
             return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
-    public PersonVO creat (PersonVO person){
+    public PersonVO create (PersonVO person){
         logger.info("created a person");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo = repository.save(entity);
         return DozerMapper.parseObject(vo, PersonVO.class);
+    } 
+
+    public PersonVOV2 createv2 (PersonVOV2 person){
+        logger.info("created a person with V2");
+        var entity = mapper.convertVOToEntity(person);
+        var vo = repository.save(entity);
+        return mapper.convertEntityToVO(vo);
     } 
 
     public PersonVO update (PersonVO person){

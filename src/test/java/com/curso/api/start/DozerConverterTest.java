@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.curso.api.start.Mapper.DozerMapper;
 import com.curso.api.start.Model.Person;
