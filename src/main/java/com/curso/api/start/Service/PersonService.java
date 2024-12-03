@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.curso.api.start.Exceptions.UnsupportedMath;
+import com.curso.api.start.Mapper.DozerMapper;
 import com.curso.api.start.Model.Person;
 import com.curso.api.start.Repository.PersonRepository;
 import com.curso.api.start.VO.PersonVO;
@@ -22,7 +23,7 @@ public class PersonService implements Serializable {
 
     public List<PersonVO> findAll(){
         logger.info("Find all people");                           
-        return repository.findAll();
+        return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
     }
             
     public PersonVO findById(Long id){
@@ -32,14 +33,18 @@ public class PersonService implements Serializable {
 		person.setLastName("Costa");
 		person.setAddress("Uberlândia - Minas Gerais - Brasil");
 		person.setGender("Male");
-		return repository.findById(id)
+		var entity = repository.findById(id)
                             .orElseThrow(() -> new UnsupportedMath("Person not found by ID"));
+            return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO creat (PersonVO person){
         logger.info("created a person");
-        return repository.save(person);
+        var entity = DozerMapper.parseObject(person, Person.class);
+        var vo = repository.save(entity);
+        return DozerMapper.parseObject(vo, PersonVO.class);
     } 
+
     public PersonVO update (PersonVO person){
         logger.info("update a person");
 
@@ -49,7 +54,8 @@ public class PersonService implements Serializable {
                             entity.setLastName(person.getLastName());
                             entity.setAddress(person.getAddress());
                             entity.setGender(person.getGender());
-        return repository.save(person);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public void delete (Long id){
