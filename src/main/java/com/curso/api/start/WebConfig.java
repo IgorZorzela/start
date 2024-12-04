@@ -10,6 +10,7 @@ public class WebConfig implements WebMvcConfigurer{
 
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+
        configurer.favorParameter(true)
                  .parameterName("mediaType")
                  .ignoreAcceptHeader(true)
@@ -17,6 +18,14 @@ public class WebConfig implements WebMvcConfigurer{
                  .defaultContentType(MediaType.APPLICATION_JSON)
                     .mediaType("json", MediaType.APPLICATION_JSON)
                     .mediaType("xml", MediaType.APPLICATION_XML)
-                    .mediaType("pdf", MediaType.APPLICATION_PDF);                   
+                    .mediaType("pdf", MediaType.APPLICATION_PDF); 
+                    
+        configurer.favorParameter(false)
+                  .ignoreAcceptHeader(false)
+                  .useRegisteredExtensionsOnly(false)
+                  .defaultContentType(MediaType.APPLICATION_JSON)
+                    .mediaType("json", MediaType.APPLICATION_JSON)
+                    .mediaType("xml", MediaType.APPLICATION_XML)
+                    .mediaType("pdf", MediaType.APPLICATION_PDF); 
     }
 }
