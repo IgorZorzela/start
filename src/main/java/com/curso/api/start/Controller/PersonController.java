@@ -25,30 +25,46 @@ public class PersonController {
     @Autowired
     private PersonService service;   
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE
+                                            ,MediaType.APPLICATION_XML_VALUE
+                                            ,MediaType.APPLICATION_PDF_VALUE})
     public PersonVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE
+      ,MediaType.APPLICATION_XML_VALUE
+      ,MediaType.APPLICATION_PDF_VALUE})
     public List<PersonVO> findAll(Long id) {
 		return service.findAll();
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-                 consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE
+                            ,MediaType.APPLICATION_XML_VALUE
+                            ,MediaType.APPLICATION_PDF_VALUE},
+                 consumes = {MediaType.APPLICATION_JSON_VALUE
+                            ,MediaType.APPLICATION_XML_VALUE
+                            ,MediaType.APPLICATION_PDF_VALUE})
     public PersonVO create(@RequestBody PersonVO PersonDTO) {
 		return service.create(PersonDTO);
     }
 
-    @PostMapping(value = "/v2", produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/v2", produces = {MediaType.APPLICATION_JSON_VALUE
+                                           ,MediaType.APPLICATION_XML_VALUE
+                                           ,MediaType.APPLICATION_PDF_VALUE},
+                                consumes = {MediaType.APPLICATION_JSON_VALUE
+                                           ,MediaType.APPLICATION_XML_VALUE
+                                           ,MediaType.APPLICATION_PDF_VALUE})
 public PersonVOV2 createv2(@RequestBody PersonVOV2 PersonDTO) {
 return service.createv2(PersonDTO);
 }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-                consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE
+                           ,MediaType.APPLICATION_XML_VALUE
+                           ,MediaType.APPLICATION_PDF_VALUE},
+                consumes = {MediaType.APPLICATION_JSON_VALUE
+                           ,MediaType.APPLICATION_XML_VALUE
+                           ,MediaType.APPLICATION_PDF_VALUE})
     public PersonVO update(@RequestBody PersonVO PersonDTO) {
 		return service.update(PersonDTO);
     }
